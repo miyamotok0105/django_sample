@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 
-class Post(models.Model):
+class PostData(models.Model):
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
@@ -28,7 +28,7 @@ class Post(models.Model):
 #scaffold
 import generic_scaffold
 
-class Book(models.Model):
+class BookData(models.Model):
     title = models.CharField(max_length=128)
     author = models.CharField(max_length=128)
     category = models.CharField(max_length=32)

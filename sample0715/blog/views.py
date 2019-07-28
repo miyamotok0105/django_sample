@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Book
+#modelとviewを密結合にしないで、リポジトリを経由する。
+from .models import PostData, BookData
+from blog.domain.entities.post import Post
+from blog.domain.repositories.post_repository import PostRepository
+
 from .forms import PostForm
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    books = Book.objects.all()
+    post = PostRepository()
+    posts = post.all()
+    books = BookData.objects.all()
     return render(request, 'blog/post_list.html', {'posts': posts, 'books': books})
 
 def post_new(request):
@@ -23,5 +28,5 @@ def post_new(request):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(PostData, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})

@@ -27,7 +27,30 @@ view.py, models.py, scaffolding.py, templates/books/book_form.html, mysite/urls.
 
 
 ```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+
+```
 http://127.0.0.1:8000/
 http://127.0.0.1:8000/books
 ```
+
+
+# ddd
+
+
+```
+pip install object-mapper
+```
+
+
+
+
+
+# 参考
+
+https://github.com/davidsylvestre/ddd-shop-python
+
 
