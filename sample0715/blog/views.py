@@ -2,14 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 #modelとviewを密結合にしないで、リポジトリを経由する。
 from .models import PostData, BookData
-from blog.domain.entities.post import Post
-from blog.domain.repositories.post_repository import PostRepository
-
+from blog.domain.service.post import PostService
 from .forms import PostForm
 
 def post_list(request):
-    post = PostRepository()
-    posts = post.all()
+    post_service = PostService()
+    posts = post_service.all()
     books = BookData.objects.all()
     return render(request, 'blog/post_list.html', {'posts': posts, 'books': books})
 
